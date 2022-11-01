@@ -13,7 +13,7 @@ static internal class DataSource
         static private int _order = 0;
         static public int Order
         {
-            get { return _order; }
+            get { return _order++; }
         }
 
         static private int _itemInOrder = 0;
@@ -77,39 +77,42 @@ static internal class DataSource
         }
     }
 
+    static bool IsExsist(int id)
+    {
+        int i=0;
+        while(i<products.Length)
+        {
+            if (products[i].ID == id)
+                return true;
+            i++;
+        }
+        return false;
+    }
+
     static private void s_Initialize()
     {
-        (string, string)[] products1 =
+        (string, string,string)[] products1 =
         {
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
-            ("",""),
+             ("Set for 6 diners","gold","dinnerware"),
+            ("Set of 6 glasses","gold","dinnerware"),
+            ("Bath towel", "white","textile"),
+            ("kitchen towel","yellow","textile"),
+            ("Decorative tool for soap","pink","textile"),
+            ("A luxurious vase","silver","styling"),
+            ("Wool carpet","pink","textile"),
+            ("Bedding with a speckled print","brown","linen"),
+            ("Silk bedding","white","linen"),
+            ("Fragrance distributor","blue","bathAccessories")
         };
 
         for (int i = 0; i < 10; i++)
         {
-            int price = (int)_random.NextInt64(20000, 7000000);
-            int amount = (int)_random.NextInt64(100);
+            int price = (int)_random.NextInt64(50, 700);
+            int amount = (int)_random.NextInt64(25);
             int id = (int)_random.NextInt64(100000, 999999);
-            int j = 0;
-            while (j < products.Length)
+            while(IsExsist(id))
             {
-                if (products[j].ID == id)
-                {
-                    id = (int)_random.NextInt64(100000, 999999);
-                    j = 0;
-                }
-                else
-                {
-                    j++;
-                }
+                id = (int)_random.NextInt64(100000, 999999);
             }
             DO.Product product = new DO.Product { ID = id, Name = products1[i].Item1, Category = products1[i].Item2, Price = price, InStock= amount };
             AddProduct(product);

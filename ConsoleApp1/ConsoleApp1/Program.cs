@@ -1,12 +1,18 @@
 ﻿using System;
 
-namespace ConsoleApp1
+namespace ConsoleApp1;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        Console.WriteLine("enter a number:");
+        int number = int.Parse(Console.ReadLine());
+        switch(number)
         {
-            Console.WriteLine("Hello World!");
+            
+
         }
+
     }
 }
