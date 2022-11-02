@@ -114,7 +114,7 @@ static internal class DataSource
             {
                 id = (int)_random.NextInt64(100000, 999999);
             }
-            DO.Product product = new DO.Product { ID = id, Name = products1[i].Item1, Category = products1[i].Item2, Price = price, InStock= amount };
+            DO.Product product = new DO.Product { ID = id, Name = products1[i].Item1, Category = products1[i].Item2, Price = price, amount= amount };
             AddProduct(product);
         }
         (string, string, string)[] orders1 = {
